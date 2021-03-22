@@ -5,6 +5,15 @@
 #include <numeric>
 #include <vector>
 
+enum class CircuitType { RLC, LC };
+struct InputValues {
+  CircuitType type = CircuitType::RLC;
+  double voltage = 0.0;
+  double resistance = 0.0;
+  double inductance = 0.0;
+  double capacitance = 0.0;
+};
+
 class Resistor {
  public:
   static Resistor *make_resistor(double r) { return new Resistor(r); }
