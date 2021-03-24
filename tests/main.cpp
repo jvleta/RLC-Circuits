@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "../src/resistors.h"
+#include "resistors.h"
 
 TEST(ResistorTests, FactoryMethodTest) {
   double resistance = 1.0;
