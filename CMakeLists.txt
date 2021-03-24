@@ -1,3 +1,3 @@
 cmake_minimum_required (VERSION 3.2)
-project(Circuits)
-add_executable(test main.cpp)
+project(CATs)
+add_executable(CATs main.cpp)

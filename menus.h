@@ -5,7 +5,8 @@
 #include <iostream>
 #include <string>
 
-#include "components.h"
+#include "circuits.h"
+#include "factories.h"
 
 struct MainMenuOption {
   int choice_index{};
