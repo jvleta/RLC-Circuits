@@ -1,5 +1,9 @@
 #include "gtest/gtest.h"
 
-TEST(CircuitTest, Test1) {
-  EXPECT_EQ(1, 1);
+#include "../src/resistors.h"
+
+TEST(ResistorTests, FactoryMethodTest) {
+  double resistance = 1.0;
+  auto r1 = Resistor::make_resistor(resistance);
+  EXPECT_EQ(r1->get_resistance(), resistance);
 }
