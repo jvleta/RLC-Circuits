@@ -45,10 +45,24 @@ class Circuit {
     capacitors_.push_back(capacitor);
   }
   void set_voltage(double v) { voltage_ = v; }
+
   double get_total_resistance() {
     return std::accumulate(
         resistors_.begin(), resistors_.end(), 0.0,
         [](double sum, Resistor *r) { return sum + r->get_resistance(); });
+  }
+
+  double get_total_inductance() {
+    return std::accumulate(
+        inductors_.begin(), inductors_.end(), 0.0,
+        [](double sum, Inductor *l) { return sum + l->get_inductance(); });
+  }
+
+  double get_total_capacitance() {
+    double one_over_c = std::accumulate(
+        capacitors_.begin(), capacitors_.end(), 0.0,
+        [](double sum, Capacitor *c) { return sum + c->get_capacitance(); });
+    return 1.0 / one_over_c;
   }
 
   double get_voltage() { return voltage_; }
