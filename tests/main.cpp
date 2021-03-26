@@ -25,6 +25,34 @@ TEST(CapacitorTests, FactorMethodTest) {
   EXPECT_EQ(c1->get_capacitance(), capacitance);
 }
 
+TEST(CircuitTests, RLCCircuitCreation) {
+  double r = 1.0;
+  double l = 1.0;
+  double c = 1.0;
+  auto rlc = CircuitFactory::make_RLC_circuit(r, l, c);
+  EXPECT_EQ(rlc->get_total_resistance(), 1.0);
+  EXPECT_EQ(rlc->get_total_inductance(), 1.0);
+  EXPECT_EQ(rlc->get_total_capacitance(), 1.0);
+}
+
+TEST(CircuitTests, RCCircuitCreation) {
+  double r = 1.0;
+  double c = 1.0;
+  auto rc = CircuitFactory::make_RC_circuit(r, c);
+  EXPECT_EQ(rc->get_total_resistance(), 1.0);
+  EXPECT_EQ(rc->get_total_inductance(), 0.0);
+  EXPECT_EQ(rc->get_total_capacitance(), 1.0);
+}
+
+TEST(CircuitTests, LCCircuitCreation) {
+  double l = 1.0;
+  double c = 1.0;
+  auto lc = CircuitFactory::make_LC_circuit(l, c);
+  EXPECT_EQ(lc->get_total_resistance(), 0.0);
+  EXPECT_EQ(lc->get_total_inductance(), 1.0);
+  EXPECT_EQ(lc->get_total_capacitance(), 1.0);
+}
+
 TEST(CircuitTests, CombineResistorsInSeries) {
   double r = 1.0;
   double l = 1.0;
