@@ -59,9 +59,11 @@ class Circuit {
   }
 
   double get_total_capacitance() {
-    double one_over_c = std::accumulate(
-        capacitors_.begin(), capacitors_.end(), 0.0,
-        [](double sum, Capacitor *c) { return sum + c->get_capacitance(); });
+    double one_over_c =
+        std::accumulate(capacitors_.begin(), capacitors_.end(), 0.0,
+                        [](double sum, Capacitor *c) {
+                          return sum + 1.0 / c->get_capacitance();
+                        });
     return 1.0 / one_over_c;
   }
 
