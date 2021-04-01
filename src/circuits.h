@@ -9,9 +9,7 @@
 #include "inductors.h"
 #include "resistors.h"
 
-enum class CircuitType { RLC, LC };
 struct InputValues {
-  CircuitType type = CircuitType::RLC;
   double voltage = 0.0;
   double resistance = 0.0;
   double inductance = 0.0;
@@ -19,10 +17,8 @@ struct InputValues {
 };
 
 class Circuit {
- protected:
-  Circuit() {}
-
  private:
+  Circuit() {}
   double voltage_;
   std::vector<Resistor *> resistors_;
   std::vector<Inductor *> inductors_;
@@ -33,8 +29,8 @@ class Circuit {
     compute();
     make_plot();
   }
-  virtual void compute() = 0;
-  void make_plot(){};
+  virtual void compute(){};
+  virtual void make_plot(){};
   virtual void add_resistor(Resistor *resistor) {
     resistors_.push_back(resistor);
   }
@@ -69,34 +65,26 @@ class Circuit {
 
   double get_voltage() { return voltage_; }
   double get_current() { return voltage_ / get_total_resistance(); }
-  friend class CircuitFactory;
-};
 
-class RCCircuit : public Circuit {
- private:
-  RCCircuit(){};
+  static Circuit *make_RC_circuit(double r, double c) {
+    Circuit *circuit = new Circuit();
+    circuit->add_resistor(Resistor::make_resistor(r));
+    circuit->add_capacitor(Capacitor::make_capacitor(c));
+    return circuit;
+  }
 
- public:
-  void add_inductor() = delete;
-  void compute() {}
-  friend class CircuitFactory;
-};
+  static Circuit *make_LC_circuit(double l, double c) {
+    Circuit *circuit = new Circuit();
+    circuit->add_inductor(Inductor::make_inductor(l));
+    circuit->add_capacitor(Capacitor::make_capacitor(c));
+    return circuit;
+  }
 
-class LCCircuit : public Circuit {
- private:
-  LCCircuit(){};
-
- public:
-  void add_resistor() = delete;
-  void compute() {}
-  friend class CircuitFactory;
-};
-
-class RLCCircuit : public Circuit {
- private:
-  RLCCircuit(){};
-
- public:
-  void compute() {}
-  friend class CircuitFactory;
+  static Circuit *make_RLC_circuit(double r, double l, double c) {
+    Circuit *circuit = new Circuit();
+    circuit->add_resistor(Resistor::make_resistor(r));
+    circuit->add_inductor(Inductor::make_inductor(l));
+    circuit->add_capacitor(Capacitor::make_capacitor(c));
+    return circuit;
+  }
 };

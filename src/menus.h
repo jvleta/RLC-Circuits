@@ -6,7 +6,6 @@
 #include <string>
 
 #include "circuits.h"
-#include "factories.h"
 
 struct MainMenuOption {
   int choice_index{};
@@ -26,21 +25,21 @@ void CreateNewCircuitMenu() {
        []() {
          double r = 1.0;
          double c = 1.0;
-         return CircuitFactory::make_RC_circuit(r, c);
+         return Circuit::make_RC_circuit(r, c);
          std::cout << "\n";
        }},
       {2, "Create LC Circuit",
        []() {
          double l = 1.0;
          double c = 1.0;
-         return CircuitFactory::make_LC_circuit(l, c);
+         return Circuit::make_LC_circuit(l, c);
          std::cout << "\n";
        }},
       {3, "Create RLC Circuit", []() {
          double r = 1.0;
          double l = 1.0;
          double c = 1.0;
-         return CircuitFactory::make_RLC_circuit(r, l, c);
+         return Circuit::make_RLC_circuit(r, l, c);
          std::cout << "\n";
        }}};
 

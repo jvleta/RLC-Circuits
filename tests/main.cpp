@@ -1,8 +1,6 @@
-#include "capacitors.h"
-#include "factories.h"
-#include "gtest/gtest.h"
-#include "inductors.h"
-#include "resistors.h"
+#include <gtest/gtest.h>
+
+#include "circuits.h"
 
 TEST(ResistorTests, FactoryMethodTest) {
   double resistance = 1.0;
@@ -26,8 +24,7 @@ TEST(CircuitTests, RLCCircuitCreation) {
   double resistance = 1.0;
   double inductance = 1.0;
   double capacitance = 1.0;
-  auto rlc =
-      CircuitFactory::make_RLC_circuit(resistance, inductance, capacitance);
+  auto rlc = Circuit::make_RLC_circuit(resistance, inductance, capacitance);
   EXPECT_EQ(rlc->get_total_resistance(), 1.0);
   EXPECT_EQ(rlc->get_total_inductance(), 1.0);
   EXPECT_EQ(rlc->get_total_capacitance(), 1.0);
@@ -36,7 +33,7 @@ TEST(CircuitTests, RLCCircuitCreation) {
 TEST(CircuitTests, RCCircuitCreation) {
   double resistance = 1.0;
   double capacitance = 1.0;
-  auto rc = CircuitFactory::make_RC_circuit(resistance, capacitance);
+  auto rc = Circuit::make_RC_circuit(resistance, capacitance);
   EXPECT_EQ(rc->get_total_resistance(), 1.0);
   EXPECT_EQ(rc->get_total_inductance(), 0.0);
   EXPECT_EQ(rc->get_total_capacitance(), 1.0);
@@ -45,7 +42,7 @@ TEST(CircuitTests, RCCircuitCreation) {
 TEST(CircuitTests, LCCircuitCreation) {
   double inductance = 1.0;
   double capacitance = 1.0;
-  auto lc = CircuitFactory::make_LC_circuit(inductance, capacitance);
+  auto lc = Circuit::make_LC_circuit(inductance, capacitance);
   EXPECT_EQ(lc->get_total_resistance(), 0.0);
   EXPECT_EQ(lc->get_total_inductance(), 1.0);
   EXPECT_EQ(lc->get_total_capacitance(), 1.0);
@@ -56,7 +53,7 @@ TEST(CircuitTests, CombineResistorsInSeries) {
   double inductance = 1.0;
   double capacitance = 1.0;
   auto rlc_circuit =
-      CircuitFactory::make_RLC_circuit(resistance, inductance, capacitance);
+      Circuit::make_RLC_circuit(resistance, inductance, capacitance);
   auto second_resistor = Resistor::make_resistor(resistance);
   rlc_circuit->add_resistor(second_resistor);
   EXPECT_EQ(rlc_circuit->get_total_resistance(), 2.0 * resistance);
@@ -70,7 +67,7 @@ TEST(CircuitTests, CombineInductorsInSeries) {
   double inductance = 1.0;
   double capacitance = 1.0;
   auto rlc_circuit =
-      CircuitFactory::make_RLC_circuit(resistance, inductance, capacitance);
+      Circuit::make_RLC_circuit(resistance, inductance, capacitance);
   auto second_inductor = Inductor::make_inductor(inductance);
   rlc_circuit->add_inductor(second_inductor);
   EXPECT_EQ(rlc_circuit->get_total_inductance(), 2.0 * inductance);
@@ -85,7 +82,7 @@ TEST(CircuitTests, CombineCapacitorsInSeries) {
   double capacitance1 = 1.0;
   double capacitance2 = 0.5;
   auto rlc_circuit =
-      CircuitFactory::make_RLC_circuit(resistance, inductance, capacitance1);
+      Circuit::make_RLC_circuit(resistance, inductance, capacitance1);
   auto second_capacitor = Capacitor::make_capacitor(capacitance1);
   rlc_circuit->add_capacitor(second_capacitor);
   EXPECT_EQ(rlc_circuit->get_total_capacitance(), 0.5);
