@@ -5,12 +5,23 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/src",
-                "/usr/include/vtk-7.1"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "intelliSenseMode": "clang-x64"
+        },
+        {
+            "name": "Windows",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/src",
+            ],
+            "defines": [],
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "intelliSenseMode": "windows-msvc-x64",
+            "configurationProvider": "go2sh.cmake-integration"
         }
     ],
     "version": 4
