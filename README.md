@@ -1,9 +1,6 @@
 # Circuit Analysis Tools (CATs)
 
-**Disclaimer**: This project is for academic purposes only.
-
-- The following design patterns have been utilized:
-   - Factory Pattern
-   - Template Method Pattern
-   - Observer Pattern
-
+TODO:
+- Add circuit sub classes
+- Implement analytical and numerical solutions
+- Implement plots

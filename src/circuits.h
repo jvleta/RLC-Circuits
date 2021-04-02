@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstdlib>
 #include <iostream>
 #include <memory>
 #include <numeric>
@@ -51,20 +50,16 @@ class Circuit : public InputListener {
     resistance_ = r;
     inductance_ = l;
     capacitance_ = c;
-    circuit_id_ = std::rand();
   }
   double voltage_ = 0.0;
   double resistance_ = 0.0;
   double inductance_ = 0.0;
   double capacitance_ = 0.0;
-  int circuit_id_ = 0;
 
  public:
   void InputChanged(InputValues &input, const std::string field_name,
                     const double &field_value) {
-    // std::cout << "Circuit ID: " << circuit_id_ << "\n";
-    // std::cout << "input's " << field_name << " has been changed to "
-    //           << field_value << "\n";
+    // TODO: Make field_name enum class
     if (field_name == "voltage") {
       set_voltage(field_value);
     }
