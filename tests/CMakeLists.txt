@@ -1,21 +1,2 @@
-# include(ExternalProject)
-# set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
-# if (UNIX)
-# ExternalProject_Add(googletest
-#     GIT_REPOSITORY https://github.com/google/googletest
-#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-# )
-# elseif(WIN32)
-# ExternalProject_Add(googletest
-#     GIT_REPOSITORY https://github.com/google/googletest
-#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -Dgtest_disable_pthreads=ON -Dgtest_force_shared_crt=ON
-# )
-# endif()
-# include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
-# link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 add_executable(test_CATs main.cpp)
-# if (UNIX)
-#     target_link_libraries(test_CATs gtest gtest_main pthread)
-# else()
-target_link_libraries(test_CATs ${CMAKE_BINARY_DIR}/lib/Debug/gtestd ${CMAKE_BINARY_DIR}/lib/Debug/gtest_maind)
-# endif()
+target_link_libraries(test_CATs gtest gtest_main pthread)
