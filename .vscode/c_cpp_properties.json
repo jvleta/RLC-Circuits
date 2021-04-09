@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/src",
+                "${workspaceFolder}/src"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
@@ -15,13 +15,16 @@
             "name": "Windows",
             "includePath": [
                 "${default}",
+                "${workspaceFolder}/external/googletest/googletest/include",
+                "${workspaceFolder}/external/rapidjson/include",
                 "${workspaceFolder}/src",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.24.28314/include",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.24.28314/include/cliext",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.24.28314/include/experimental"
             ],
-            "defines": [],
             "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe",
-            "cStandard": "c11",
-            "intelliSenseMode": "windows-msvc-x64",
-            "configurationProvider": "go2sh.cmake-integration"
+            "cStandard": "c17",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
