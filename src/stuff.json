@@ -1,0 +1,12 @@
+{
+    "abc": {
+        "resistance": 1.0,
+        "inductance": 2.0,
+        "capacitance": 3.0
+    },
+    "def": {
+        "resistance": 4.0,
+        "inductance": 5.0,
+        "capacitance": 6.0
+    }
+}

@@ -1,29 +1,30 @@
+#include <rapidjson/document.h>
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/stringbuffer.h>
+
 #include <cmath>
+#include <cstdio>
 #include <vector>
 
 #include "menus.h"
-#include "rapidjson/document.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/writer.h"
-
-using namespace rapidjson;
+#include "rapidjson/filereadstream.h"
 
 int main() {
-  // 1. Parse a JSON string into DOM.
-  const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
-  Document d;
-  d.Parse(json);
+  FILE* fp = fopen("/home/jimmy/code/cats/src/stuff.json",
+                   "rb");  // non-Windows use "r"
 
-  // 2. Modify it by DOM.
-  Value& s = d["stars"];
-  s.SetInt(s.GetInt() + 1);
+  char readBuffer[65536];
+  rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 
-  // 3. Stringify the DOM
-  StringBuffer buffer;
-  Writer<StringBuffer> writer(buffer);
+  rapidjson::Document d;
+  d.ParseStream(is);
+  rapidjson::StringBuffer buffer;
+  rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(buffer);
   d.Accept(writer);
 
-  // Output {"project":"rapidjson","stars":11}
   std::cout << buffer.GetString() << std::endl;
+  std::cout << d["abc"]["resistance"].GetDouble() << std::endl;
+  std::cout << d["def"]["resistance"].GetDouble() << std::endl;
+
   return 0;
 }
