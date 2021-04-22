@@ -1,4 +1,4 @@
-# Circuit Analysis Tools (CATs)
+# Circuits
 
 TODO:
 - Add circuit sub classes
